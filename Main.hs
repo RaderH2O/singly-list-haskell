@@ -1,5 +1,4 @@
 module Main where
-
 data SinglyList a = LeftEnd a (SinglyList a) |
                     Middle a (SinglyList a)  |
                     RightEnd a
@@ -29,6 +28,9 @@ singlyToList :: SinglyList a -> [a]
 singlyToList (LeftEnd a b)      = a : singlyToList b
 singlyToList (Middle a b)       = a : singlyToList b
 singlyToList (RightEnd a)       = [a]
+
+(.+) :: SinglyList a -> [a] -> SinglyList a
+(.+) sl l = listToSingly $ singlyToList sl ++ l
 
 values :: SinglyList Int
 values = let e1 = LeftEnd  1 e2
